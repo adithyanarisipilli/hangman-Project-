@@ -1,0 +1,48 @@
+# Detailed Hangman Strategy:
+
+1. **Initialize Variables:**
+   - Initialize variables such as sorted_letter_count and guess_letter.
+
+2. **Vowel Handling:**
+   - Iterate over the sorted letter counts to find the most frequently occurring letter that hasn't been guessed.
+   - If the letter is a vowel and the count of vowels in the clean_word exceeds 55%, add the vowel to the guessed letters, here 55% is derived from the plot we got from the code
+	
+
+3. **Fallback to Substrings:**
+   - If no suitable letter is found among the most frequent letters, proceed to a fallback mechanism.
+   - Calculate substrings of the clean_word of varying lengths (half and one-third of the word length) and process them.
+   - For each substring, update an n-gram dictionary and count occurrences to find potential letters.
+
+4. **Select a Guessed Letter:**
+   - Iterate over the sorted letter counts based on processed substrings to find a suitable letter that hasn't been guessed.
+   - If the letter is a vowel and the count of vowels in the clean_word exceeds 55%, add the vowel to the guessed letters.
+
+5. **Final Fallback to Full Dictionary:**
+   - If no suitable letter is found in the previous steps, default to the ordering of the full dictionary.
+   - Iterate over the sorted letter counts of the full dictionary, selecting the first suitable letter that hasn't been guessed.
+
+6. **Return the Guessed Letter:**
+   - Return the selected letter as the final guess.
+
+# Key Components of the Strategy:
+
+- **Vowel Handling:**
+  - Prioritize guessing vowels early, especially if they are common in the word.
+  - Avoid adding vowels to guessed letters if their count exceeds 55% of the clean_word.
+
+- **Fallback Mechanisms:**
+  - If initial letter guess and substring-based strategies do not yield a suitable letter, fall back to alternative methods.
+
+- **Avoiding Previously Guessed Letters:**
+  - Consistently avoid guessing letters that have already been guessed.
+
+- **Adjustment for Vowel Frequency:**
+  - Consider the frequency of vowels in the word, adjusting the guessing approach if vowels are predominant.
+
+- **Substring Processing:**
+  - Process substrings of the word to gather information about potential letters.
+  - Use n-gram dictionaries to update and count occurrences of substrings.
+
+# Important Note:
+  - The effectiveness of this strategy depends on the specific characteristics of the word set and the quality of the n-gram dictionary used.
+  - Adjustments may be necessary based on the particularities of the Hangman game implementation.
